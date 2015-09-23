@@ -1,9 +1,14 @@
+/**
+ * Created by wangbochen on 9/23/15.
+ */
+
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Cuisine' });
+    res.render('home', {});
 });
 
 module.exports = router;
+

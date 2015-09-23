@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    .jumbotron
+        form.form-signin(action="/home", method="get")
+            h2.form-signin-heading(align="center") Cuisine
+            div(align="center")
+                input.input-block-level(type="text", name="username", placeholder="username")
+                input.input-block-level(type="password", name="password", placeholder="Password")
+                label.checkbox.
+                    <input type="checkbox" value="remember-me" /> Remember me
+                button.btn.btn-large.btn-primary(type="submit") Sign in
+        div(align="center")
+            a.btn.bit-large.btn-primary(type="button", onclick="location.href='/signup'") Sign up
