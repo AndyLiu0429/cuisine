@@ -6,7 +6,7 @@ var Sequelize = require('sequelize');
 var fs        = require("fs");
 var path      = require("path");
 var config = require('../config').db_test;
-var sequelize = new Sequelize(config.database,config.user,config.password,config);
+var sequelize = new Sequelize(config.database,config.username,config.password,config);
 var db        = {};
 //console.log(config.db_addr);
 fs

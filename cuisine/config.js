@@ -4,7 +4,7 @@
 var config = {
     'db_test':{
         "username": "root",
-        "password": null,
+        "password": "123456",
         "database": "database_test",
         "host": "127.0.0.1",
         "port": 3306,
