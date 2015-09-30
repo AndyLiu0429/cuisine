@@ -45,7 +45,7 @@ exports.authenticate = function(req,res){
 				data: user
 			});
 		} else {
-			res.json({
+			res.status(401).json({
 				type: false,
 				data: "Incorrect username/password"
 			});
@@ -62,7 +62,7 @@ exports.createUser = function (req,res){
         }
     }).then(function(user) {
         if (user) {
-            res.json({
+            res.status(409).json({
                 type: false,
                 data: "User already exists!"
             });
