@@ -17,6 +17,8 @@ var should = require('should');
 
 var app = require('../app');
 var models  = require('../models');
+models.sequelize.sync({force: false});
+
 var User = models.User;
 var port = 3333;
 
