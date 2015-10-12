@@ -8,9 +8,12 @@
 
 #import "ListView.h"
 #import "ListCell.h"
+#import "detailPage.h"
 #import <MapKit/MapKit.h>
+#import <UIKit/UIKit.h>
 @interface ListView ()
-
+//@property(atomic,strong) detailPage *details;
+@property (strong, nonatomic) UISearchBar *searchBar;
 @end
 
 @implementation ListView
@@ -21,13 +24,40 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 40)];
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.delegate = self;
+    self.tableView.tableHeaderView = self.searchBar;
+    [self.tableView setContentOffset:CGPointMake(0, 40)];
+    
+    
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(userDidSwipeLeft:)];
+    [swipe setDirection:UISwipeGestureRecognizerDirectionLeft];
+    swipe.delegate = self;
+    [self.tableView addGestureRecognizer:swipe];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)userDidSwipeLeft: (UISwipeGestureRecognizer *)swipe{
+        CGPoint location = [swipe locationInView:self.tableView];
+        NSIndexPath *swipeCell = [self.tableView indexPathForRowAtPoint:location];
+//    NSLog(@"%@",swipeCell);
+        ListCell* cell = [self.tableView cellForRowAtIndexPath:swipeCell];
+    cell.userInteractionEnabled = YES;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [UIView animateWithDuration:0.1f animations:^{
+        cell.foodpic.frame = CGRectOffset(cell.foodpic.frame, -40, 0);
+    }];
+    //    NSLog(@"%@",cell.accessoryType);
+//    NSLog(@"gotin");
+
+}
+
+
 
 #pragma mark - Table view data source
 
@@ -38,42 +68,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 1;
+    return 2;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" ];
-    
+//    CGFloat navh = self.navigationController.navigationBar.frame.size.height;
+//    cell.frame = CGRectMake(self.view.frame.origin.x,navh+self.view.frame.origin.y,self.view.frame.size.width,250);
     // Configure the cell...
     if(cell == nil){
         cell = [[ListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    UIImageView *foodpic =  [[UIImageView alloc]initWithFrame:CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, self.view.frame.size.width, 250)];
-    foodpic.image = [UIImage imageNamed:@"food.png"];
-    UIVisualEffectView *mask = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(cell.bounds.origin.x, cell.bounds.size.height-90, self.view.frame.size.width, 90)];
-    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    mask.effect = blur;mask.alpha=0.2;
-    UILabel *foodname = [[UILabel alloc]initWithFrame:CGRectMake(cell.bounds.origin.x, cell.bounds.size.height-90, self.view.frame.size.width, 90)];
-    foodname.text = @"Sushi";
-    [foodname setTextAlignment:NSTextAlignmentCenter];
-//    foodname.textAlignment = NSTextAlignmentCenter;
-    [foodname setTextColor:[UIColor whiteColor]];
-//    foodname.textColor = [UIColor whiteColor];
-    [foodname setFont:[UIFont fontWithName:@"Arial" size:28]];
-//    foodname.font = [UIFont boldS];
-    [foodpic addSubview:mask];
-    [cell addSubview:foodpic];
-    [cell addSubview:foodname];
-//    [cell addSubview:mask];
-//    cell.accessoryView = nil;
-//    cell.accessoryType = UITableViewCellAccessoryNone;
-//    NSLog(@"the content width:%1.0f",cell.imageView.frame.size.width);
-//    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"food.png"]];
-   
+    if(indexPath.row == 0){
+//        UIImage *img = [UIImage imageNamed:@"food.png"];
+//        NSString *foodname = @"Sushi";
+        [cell populateImage:[UIImage imageNamed:@"food.png"] andFoodname:@"swipe left"];
+        [cell awakeFromNib];
+    }
+    if(indexPath.row == 1){
+        [cell populateImage:[UIImage imageNamed:@"food1.png"] andFoodname:@"Don't know what is this"];
+        [cell awakeFromNib];
+    }
     return cell;
 }
-
 
 /*
 // Override to support conditional editing of the table view.
@@ -124,21 +142,25 @@
     // Navigation logic may go here. Create and push another view controller.
 //    UINavigationController *nav = [[UINavigationController alloc]init];
     if(indexPath.row == 0){
-        UIViewController *details = [[UIViewController alloc] init];
-        details.view.backgroundColor = [UIColor whiteColor];
-        CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
-        UIImageView *foodpic =  [[UIImageView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+statusBarSize.height, self.view.frame.size.width, 250)];
-        foodpic.image = [UIImage imageNamed:@"food.png"];
-        [details.view addSubview:foodpic];
-        [self.navigationController pushViewController:details animated:YES];
-        UILabel *address = [[UILabel alloc]initWithFrame:CGRectMake(0, foodpic.frame.origin.y+foodpic.frame.size.height, self.view.frame.size.width, 50)];
-        [address setText:@"111,8Ave,14th street"];
-       [address setTextAlignment:NSTextAlignmentCenter];
-        [address setFont:[UIFont fontWithName:@"Arial" size:18]];
-        MKMapView *map = [[MKMapView alloc]initWithFrame:CGRectMake(0,address.frame.origin.y+address.frame.size.height,self.view.frame.size.width, 100)];
-        [details.view addSubview:address];
-        [details.view addSubview:map];
-//        NSLog(@"statusbar and nav %f,picture origin %f, picture size %f",self.navigationController.navigationBar.frame.size.height+statusBarSize.height,foodpic.frame.origin.y,foodpic.frame.size.height);
+        detailPage *details = nil;
+        if(!details){
+            details = [[detailPage alloc] init];
+            NSString *addr = @"111,8Ave,14th street";
+            [details populateImage:[UIImage imageNamed:@"food.png"] andAddress:@"111,8Ave,14th street" andNavHeight:self.navigationController.navigationBar.frame.size.height];
+        }
+        [self.navigationController pushViewController:details animated:NO];
+    }
+    if(indexPath.row == 1){
+        detailPage *details = nil;
+//        UIImage *img = [UIImage imageNamed:@"food1.png"];
+//        NSString *addr = @"address2";
+        //        NSLog(@"asdfd%@",addr);
+        if(!details){
+            details = [[detailPage alloc]init];
+            [details populateImage:[UIImage imageNamed:@"food1.png"] andAddress:@"address2" andNavHeight:self.navigationController.navigationBar.frame.size.height];
+        }
+        [self.navigationController pushViewController:details animated:NO];
+        NSLog(@"%ld",(long)indexPath.row);
     }
 //    [self.navigationController.view addSubview:foodpic];
 
@@ -176,28 +198,7 @@
      //In order to appreciate the persistence of the persistent storage you should stop the app after running, then run the app directly in the device/simulator not via XCode, select some rows, and then fully quit the app (double tapping/clicking on the home button on the device/simulator), opening up again, selecting more rows, and then finally running the app with XCode again and then selecting some more rows. You will see that the counts increased for each time selected those cells.
      //Also note that the app crashes while being run in XCode, the user defaults get reset to what they were prior to running the application that time.
      **/
-    
-    //Below is a demonstration of code for showing an alert view. I did not show in class how to have code executed in response to the buttons of the UIAlertView being shown.
-//    NSArray *key = [self.targetData allKeys];
-//    if(indexPath.section == 0){
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Selection"
-//                                                            message:[NSString stringWithFormat:@"Item: %@, Detail: %@",key[indexPath.row],[self.targetData objectForKey: key[indexPath.row]]]
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"Okay"
- //                                                 otherButtonTitles:nil];
- //       [alertView show];
         
-//    }
-//    else{
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Selection"
-//                                                            message:[NSString stringWithFormat:@"Item: IOS assignment, Detail: try really hard"]
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"Okay"
-//                                                  otherButtonTitles:nil];
-//        [alertView show];
-
-//    }
-    
 }
 
 
