@@ -8,7 +8,9 @@
 
 #import "ViewController.h"
 #import "ListView.h"
+#import "loginPageViewController.h"
 @interface ViewController ()
+@property(strong,atomic) loginPageViewController *login;
 @end
 
 @implementation ViewController
@@ -16,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.login = [[loginPageViewController alloc]init];
+    [self presentViewController:self.login animated:NO completion:^{nil;}];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		082CCC0E1BBE442B00019D90 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082CCC0D1BBE442B00019D90 /* MapKit.framework */; };
+		08B2C8941BD8253F00055413 /* mapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B2C8931BD8253F00055413 /* mapViewController.m */; settings = {ASSET_TAGS = (); }; };
 		08C9921D1BC5B304005DC9A7 /* detailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C9921C1BC5B304005DC9A7 /* detailPage.m */; settings = {ASSET_TAGS = (); }; };
 		08C992231BC73308005DC9A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08C992221BC73308005DC9A7 /* UIKit.framework */; };
-		08C992291BC77011005DC9A7 /* loginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C992281BC77011005DC9A7 /* loginPageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		08D10A461BBC755100F6A8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D10A451BBC755100F6A8F3 /* main.m */; };
 		08D10A491BBC755100F6A8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D10A481BBC755100F6A8F3 /* AppDelegate.m */; };
 		08D10A4C1BBC755100F6A8F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D10A4B1BBC755100F6A8F3 /* ViewController.m */; };
@@ -19,15 +19,16 @@
 		08D10A541BBC755100F6A8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D10A521BBC755100F6A8F3 /* LaunchScreen.storyboard */; };
 		08D10A5D1BBC767900F6A8F3 /* ListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D10A5C1BBC767900F6A8F3 /* ListView.m */; settings = {ASSET_TAGS = (); }; };
 		08D10A661BBC9D8300F6A8F3 /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D10A651BBC9D8300F6A8F3 /* ListCell.m */; settings = {ASSET_TAGS = (); }; };
+		08E52E161BD1A3FA00EDBE1F /* loginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E52E151BD1A3FA00EDBE1F /* loginPageViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		082CCC0D1BBE442B00019D90 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		08B2C8921BD8253F00055413 /* mapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapViewController.h; sourceTree = "<group>"; };
+		08B2C8931BD8253F00055413 /* mapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapViewController.m; sourceTree = "<group>"; };
 		08C9921B1BC5B304005DC9A7 /* detailPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailPage.h; sourceTree = "<group>"; };
 		08C9921C1BC5B304005DC9A7 /* detailPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailPage.m; sourceTree = "<group>"; };
 		08C992221BC73308005DC9A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		08C992271BC77011005DC9A7 /* loginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginPageViewController.h; sourceTree = "<group>"; };
-		08C992281BC77011005DC9A7 /* loginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginPageViewController.m; sourceTree = "<group>"; };
 		08D10A411BBC755100F6A8F3 /* Cuisine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cuisine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D10A451BBC755100F6A8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08D10A471BBC755100F6A8F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -42,6 +43,8 @@
 		08D10A5C1BBC767900F6A8F3 /* ListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListView.m; sourceTree = "<group>"; };
 		08D10A641BBC9D8300F6A8F3 /* ListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCell.h; sourceTree = "<group>"; };
 		08D10A651BBC9D8300F6A8F3 /* ListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCell.m; sourceTree = "<group>"; };
+		08E52E141BD1A3E800EDBE1F /* loginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginPageViewController.h; sourceTree = "<group>"; };
+		08E52E151BD1A3FA00EDBE1F /* loginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,17 +80,19 @@
 			isa = PBXGroup;
 			children = (
 				08D10A471BBC755100F6A8F3 /* AppDelegate.h */,
+				08D10A481BBC755100F6A8F3 /* AppDelegate.m */,
+				08E52E141BD1A3E800EDBE1F /* loginPageViewController.h */,
+				08E52E151BD1A3FA00EDBE1F /* loginPageViewController.m */,
 				08C9921B1BC5B304005DC9A7 /* detailPage.h */,
 				08C9921C1BC5B304005DC9A7 /* detailPage.m */,
-				08C992271BC77011005DC9A7 /* loginPageViewController.h */,
-				08C992281BC77011005DC9A7 /* loginPageViewController.m */,
+				08B2C8921BD8253F00055413 /* mapViewController.h */,
+				08B2C8931BD8253F00055413 /* mapViewController.m */,
 				08D10A641BBC9D8300F6A8F3 /* ListCell.h */,
 				08D10A651BBC9D8300F6A8F3 /* ListCell.m */,
-				08D10A481BBC755100F6A8F3 /* AppDelegate.m */,
 				08D10A5B1BBC767900F6A8F3 /* ListView.h */,
+				08D10A5C1BBC767900F6A8F3 /* ListView.m */,
 				082CCC0D1BBE442B00019D90 /* MapKit.framework */,
 				08C992221BC73308005DC9A7 /* UIKit.framework */,
-				08D10A5C1BBC767900F6A8F3 /* ListView.m */,
 				08D10A4A1BBC755100F6A8F3 /* ViewController.h */,
 				08D10A4B1BBC755100F6A8F3 /* ViewController.m */,
 				08D10A4D1BBC755100F6A8F3 /* Main.storyboard */,
@@ -179,11 +184,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				08D10A5D1BBC767900F6A8F3 /* ListView.m in Sources */,
+				08E52E161BD1A3FA00EDBE1F /* loginPageViewController.m in Sources */,
 				08D10A4C1BBC755100F6A8F3 /* ViewController.m in Sources */,
+				08B2C8941BD8253F00055413 /* mapViewController.m in Sources */,
 				08D10A491BBC755100F6A8F3 /* AppDelegate.m in Sources */,
 				08D10A661BBC9D8300F6A8F3 /* ListCell.m in Sources */,
 				08D10A461BBC755100F6A8F3 /* main.m in Sources */,
-				08C992291BC77011005DC9A7 /* loginPageViewController.m in Sources */,
 				08C9921D1BC5B304005DC9A7 /* detailPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

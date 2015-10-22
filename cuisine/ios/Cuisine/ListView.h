@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ListCell.h"
 @interface ListView : UITableViewController
-@property (strong, nonatomic) IBOutlet UIView *myContentView;
 
 @end

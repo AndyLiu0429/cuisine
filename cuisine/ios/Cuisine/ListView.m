@@ -26,7 +26,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 40)];
-    self.searchBar.showsCancelButton = NO;
+    self.searchBar.showsCancelButton = NO; 
     self.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchBar;
     [self.tableView setContentOffset:CGPointMake(0, 40)];
@@ -145,8 +145,8 @@
         detailPage *details = nil;
         if(!details){
             details = [[detailPage alloc] init];
-            NSString *addr = @"111,8Ave,14th street";
-            [details populateImage:[UIImage imageNamed:@"food.png"] andAddress:@"111,8Ave,14th street" andNavHeight:self.navigationController.navigationBar.frame.size.height];
+            NSString *foodtitle = @"Here is Food Title";
+            [details populateImage:[UIImage imageNamed:@"food.png"] andfoodTitle:foodtitle andfoodDiscription:@"fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription" andNavHeight:self.navigationController.navigationBar.frame.size.height];
         }
         [self.navigationController pushViewController:details animated:NO];
     }
@@ -157,7 +157,7 @@
         //        NSLog(@"asdfd%@",addr);
         if(!details){
             details = [[detailPage alloc]init];
-            [details populateImage:[UIImage imageNamed:@"food1.png"] andAddress:@"address2" andNavHeight:self.navigationController.navigationBar.frame.size.height];
+            [details populateImage:[UIImage imageNamed:@"food1.png"] andfoodTitle:@"Here is Food Title" andfoodDiscription:@"fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription" andNavHeight:self.navigationController.navigationBar.frame.size.height];
         }
         [self.navigationController pushViewController:details animated:NO];
         NSLog(@"%ld",(long)indexPath.row);

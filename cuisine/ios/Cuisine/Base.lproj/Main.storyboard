@@ -35,59 +35,8 @@
                     <view key="view" contentMode="scaleToFill" id="fVH-3v-fvg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="kkE-ef-b6X">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCo-4P-bBX">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cuine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8T-88-M7Z">
-                                <rect key="frame" x="233" y="92" width="134" height="136"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mND-HR-DYK">
-                                <rect key="frame" x="101" y="290" width="250" height="40"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhD-ji-qw9">
-                                <rect key="frame" x="134" y="432" width="207" height="51"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="zaG-Tf-GJQ" kind="show" id="Afk-p6-40S"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EPd-jQ-cdl">
-                                <rect key="frame" x="101" y="363" width="251" height="40"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="mND-HR-DYK" firstAttribute="centerX" secondItem="fVH-3v-fvg" secondAttribute="centerX" id="Afs-5r-bAV"/>
-                            <constraint firstItem="fhD-ji-qw9" firstAttribute="centerX" secondItem="fVH-3v-fvg" secondAttribute="centerX" id="Rha-LD-avI"/>
-                            <constraint firstItem="EPd-jQ-cdl" firstAttribute="centerX" secondItem="fVH-3v-fvg" secondAttribute="centerX" id="sA3-zQ-tIm"/>
-                        </constraints>
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -98,7 +47,8 @@
         <!--Tab Bar Controller-->
         <scene sceneID="BoQ-gy-v4O">
             <objects>
-                <tabBarController id="zaG-Tf-GJQ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zaG-Tf-GJQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ISp-jY-eeZ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7Fw-iQ-UtS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -114,7 +64,7 @@
             </objects>
             <point key="canvasLocation" x="-3322.5" y="-100.35211267605634"/>
         </scene>
-        <!--List View-->
+        <!--Food List-->
         <scene sceneID="OuK-aF-Vch">
             <objects>
                 <tableViewController id="2ci-8F-seN" customClass="ListView" sceneMemberID="viewController">
@@ -141,7 +91,7 @@
                             <outlet property="delegate" destination="2ci-8F-seN" id="zvx-zy-WT7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="MCV-OK-bSl"/>
+                    <navigationItem key="navigationItem" title="Food List" id="MCV-OK-bSl"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="6D0-UB-Tdh" id="IP0-hn-r7Q"/>
                     </connections>
@@ -206,7 +156,4 @@
             <point key="canvasLocation" x="-2476.875" y="-452.11267605633788"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="cover" width="606" height="607"/>
-    </resources>
 </document>
