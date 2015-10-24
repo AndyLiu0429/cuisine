@@ -29,10 +29,11 @@ app.use(function(req, res, next) {
 
 
 var user = require('./controllers/UserController');
-app.post('/user/create',user.createUser);
+app.post('/user/',user.createUser);
 app.post('/authenticate',user.authenticate);
-app.get('/me', user.ensureAuthorized, user.findUserByToken);
-app.delete('/user/delete/:id',user.deleteUser);
+app.get('/home', user.ensureAuthorized, user.findUserByToken);
+//app.delete('/user/delete/:id',user.deleteUser);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

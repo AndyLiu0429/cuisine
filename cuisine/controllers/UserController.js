@@ -5,7 +5,7 @@
 var models  = require('../models');
 var User = models.User;
 var jwt  = require("jsonwebtoken");
-var secret_key = "12809u9ash";
+var secret_key = "128oas1309uana9cj02109u9ash";
 
 exports.ensureAuthorized = function (req, res, next) {
 	var bearerToken = req.headers["authorization"];
@@ -43,7 +43,7 @@ exports.authenticate = function(req,res){
 		if (user) {
 			res.json({
 				type: true,
-				data: user
+				token: user.token
 			});
 		} else {
 			res.status(401).json({
@@ -77,7 +77,7 @@ exports.createUser = function (req,res){
                 user1.save().then(function(user2){
                     res.json({
                         type:true,
-                        data:user2
+                        data:"Successfully create user!"
                     });
                 });
             });
@@ -85,25 +85,27 @@ exports.createUser = function (req,res){
     });
 };
 
-exports.deleteUser = function (req,res){
-    User.destroy({
-        where:{
-            user_name : req.params.user_name
-        }
-    }).then(function(){
-        res.send("User deleted");
-    });
-};
 
-exports.updateUserEmail = function (req,res){
-    User.update(
-    {
-        email:req.body.email
-    },
-    {
-        where:{id:req.params.id}
-    }
-    ).then(function(){
-      res.send("User updated");
-    });
-};
+//exports.deleteUser = function (req,res){
+//    User.destroy({
+//        where:{
+//            id : req.params.id
+//        }
+//    }).then(function(){
+//        res.send("User deleted");
+//    });
+//};
+
+
+//exports.updateUserEmail = function (req,res){
+//    User.update(
+//    {
+//        email:req.body.email
+//    },
+//    {
+//        where:{id:req.params.id}
+//    }
+//    ).then(function(){
+//      res.send("User updated");
+//    });
+//};
