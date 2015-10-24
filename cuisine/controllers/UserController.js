@@ -43,7 +43,7 @@ exports.authenticate = function(req,res){
 		if (user) {
 			res.json({
 				type: true,
-				data: user
+				token: user.token
 			});
 		} else {
 			res.status(401).json({
@@ -77,7 +77,7 @@ exports.createUser = function (req,res){
                 user1.save().then(function(user2){
                     res.json({
                         type:true,
-                        data:user2
+                        data:"Successfully create user!"
                     });
                 });
             });
