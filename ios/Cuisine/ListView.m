@@ -31,11 +31,11 @@
     self.tableView.tableHeaderView = self.searchBar;
     [self.tableView setContentOffset:CGPointMake(0, 40)];
     
-    
-    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(userDidSwipeLeft:)];
-    [swipe setDirection:UISwipeGestureRecognizerDirectionLeft];
-    swipe.delegate = self;
-    [self.tableView addGestureRecognizer:swipe];
+
+//    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(userDidSwipeLeft:)];
+//    [swipe setDirection:UISwipeGestureRecognizerDirectionLeft];
+//    swipe.delegate = self;
+//    [self.tableView addGestureRecognizer:swipe];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,7 +68,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 2;
+    return 3;
 }
 
 
@@ -90,6 +90,11 @@
         [cell populateImage:[UIImage imageNamed:@"food1.png"] andFoodname:@"Don't know what is this"];
         [cell awakeFromNib];
     }
+    if(indexPath.row == 2){
+        [cell populateImage:[UIImage imageNamed:@"food1.png"] andFoodname:@"Don't know what is this"];
+        [cell awakeFromNib];
+    }
+
     return cell;
 }
 
@@ -162,6 +167,19 @@
         [self.navigationController pushViewController:details animated:NO];
         NSLog(@"%ld",(long)indexPath.row);
     }
+    if(indexPath.row == 2){
+        detailPage *details = nil;
+        //        UIImage *img = [UIImage imageNamed:@"food1.png"];
+        //        NSString *addr = @"address2";
+        //        NSLog(@"asdfd%@",addr);
+        if(!details){
+            details = [[detailPage alloc]init];
+            [details populateImage:[UIImage imageNamed:@"food1.png"] andfoodTitle:@"Here is Food Title" andfoodDiscription:@"fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription fooddiscription" andNavHeight:self.navigationController.navigationBar.frame.size.height];
+        }
+        [self.navigationController pushViewController:details animated:NO];
+        NSLog(@"%ld",(long)indexPath.row);
+    }
+
 //    [self.navigationController.view addSubview:foodpic];
 
      // ...
