@@ -33,6 +33,7 @@ exports.findUserByToken = function (req,res){
 };
 
 exports.authenticate = function(req,res){
+
 	User.findOne({
 		where: {
 			user_name: req.body.user_name,
@@ -84,6 +85,7 @@ exports.createUser = function (req,res){
     });
 };
 
+
 //exports.deleteUser = function (req,res){
 //    User.destroy({
 //        where:{
@@ -93,6 +95,7 @@ exports.createUser = function (req,res){
 //        res.send("User deleted");
 //    });
 //};
+
 
 //exports.updateUserEmail = function (req,res){
 //    User.update(
