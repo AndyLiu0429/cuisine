@@ -60,7 +60,7 @@ describe('app', function() {
 
     it('should create user if not exist', function(done) {
         request(url)
-            .post('/user/create')
+            .post('/user')
             .send(profile)
             .end(function(err, res) {
                 if (err) {
@@ -76,7 +76,7 @@ describe('app', function() {
 
     it('should not create user if exist', function(done) {
         request(url)
-            .post('/user/create')
+            .post('/user')
             .send(profile)
             .end(function(err, res) {
                 if (err) {
@@ -123,7 +123,7 @@ describe('app', function() {
 
     it ('should see my homepage if authenticated', function(done) {
         request(url)
-            .get('/me')
+            .get('/home')
             .set('authorization', token)
             .end(function(err, res) {
                 if (err) {
