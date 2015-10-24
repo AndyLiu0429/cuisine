@@ -5,7 +5,7 @@
 var models  = require('../models');
 var User = models.User;
 var jwt  = require("jsonwebtoken");
-var secret_key = "12809u9ash";
+var secret_key = "128oas1309uana9cj02109u9ash";
 
 exports.ensureAuthorized = function (req, res, next) {
 	var bearerToken = req.headers["authorization"];
@@ -84,25 +84,25 @@ exports.createUser = function (req,res){
     });
 };
 
-exports.deleteUser = function (req,res){
-    User.destroy({
-        where:{
-            id : req.params.id
-        }
-    }).then(function(){
-        res.send("User deleted");
-    });
-};
+//exports.deleteUser = function (req,res){
+//    User.destroy({
+//        where:{
+//            id : req.params.id
+//        }
+//    }).then(function(){
+//        res.send("User deleted");
+//    });
+//};
 
-exports.updateUserEmail = function (req,res){
-    User.update(
-    {
-        email:req.body.email
-    },
-    {
-        where:{id:req.params.id}
-    }
-    ).then(function(){
-      res.send("User updated");
-    });
-};
+//exports.updateUserEmail = function (req,res){
+//    User.update(
+//    {
+//        email:req.body.email
+//    },
+//    {
+//        where:{id:req.params.id}
+//    }
+//    ).then(function(){
+//      res.send("User updated");
+//    });
+//};
