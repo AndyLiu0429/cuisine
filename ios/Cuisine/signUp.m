@@ -90,7 +90,7 @@
         [alert show];
     }
     else{
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:3000/user"]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://52.88.93.103/user"]];
         request.HTTPMethod = @"POST";
         [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
         NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
