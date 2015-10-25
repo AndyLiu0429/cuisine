@@ -21,4 +21,7 @@ Then running unit tests
 npm install mocha -g
 mocha cuisine/test
 ```
+## Continous Deployment
+[Cuisine Continuous Deployment](https://betas.to/hzmvg4r3)
+
 
