@@ -9,6 +9,12 @@ var config = {
         "host": "127.0.0.1",
         "port": 3306,
         "dialect": "mysql"
+    },
+    'yelp' : {
+        consumer_key: "mucLvK_TcfRdvGkPyq3veA",
+        consumer_secret: "uLTvG0Lf8ZTU3929hLAP8D1DS-8",
+        token: "fCrJGUFyjxE2qcIzGcI2LSuYkmFCTWZ6",
+        token_secret: "pJh3lTitQpImelBU7VjaFuDz09s"
     }
 };
 
