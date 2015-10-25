@@ -10,7 +10,4 @@
 
 @interface signUp : UIViewController <NSURLConnectionDelegate>
 {NSMutableData * responseData;}
-@property (strong, nonatomic) IBOutlet UITextField *username;
-@property (strong, nonatomic) IBOutlet UITextField *password;
-@property (strong, nonatomic) IBOutlet UIButton *signupbtn;
 @end

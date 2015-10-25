@@ -55,35 +55,42 @@ exports.authenticate = function(req,res){
 };
 
 exports.createUser = function (req,res){
-    User.findOne({
-        where: {
-            user_name: req.body.user_name,
-            password: req.body.password,
-            email: req.body.email
-        }
-    }).then(function(user) {
-        if (user) {
-            res.status(409).json({
-                type: false,
-                data: "User already exists!"
-            });
-        } else{
-            User.create({
-                user_name: req.body.user_name,
-                password: req.body.password,
-                email: req.body.email
-            }).then(function(user1){
-                user1.token = jwt.sign(user1,secret_key);
-                user1.save().then(function(user2){
-                    res.json({
-                        type:true,
-                        token:user1.token,
-                        data:"Successfully create user!"
+    var uname = req.body.user_name;
+    var pswd = req.body.password;
+    if(uname.length&&pswd.length) {
+        User.findOne({
+            where: {
+                user_name: uname,
+                password: pswd
+            }
+        }).then(function (user) {
+            if (user) {
+                res.status(409).json({
+                    type: false,
+                    data: "Username already exists!"
+                });
+            } else {
+                User.create({
+                    user_name: uname,
+                    password: pswd,
+                }).then(function (user1) {
+                    user1.token = jwt.sign(user1, secret_key);
+                    user1.save().then(function () {
+                        res.json({
+                            type: true,
+                            token: user1.token,
+                            data: "Successfully create user!"
+                        });
                     });
                 });
-            });
-        }
-    });
+            }
+        });
+    } else {
+        res.status(409).json({
+            type: false,
+            data: "Empty username or password!"
+        });
+    }
 };
 
 

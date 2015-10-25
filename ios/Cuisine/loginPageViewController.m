@@ -7,12 +7,9 @@
 //
 
 #import "loginPageViewController.h"
-#import "myTabBarController.h"
-#import "ListView.h"
 #import "signUp.h"
 @interface loginPageViewController ()
-@property(strong,atomic)myTabBarController *tab;
-@property(strong,atomic)ListView *list;
+
 @property(strong,nonatomic)UITextField *username;
 @property(strong,nonatomic)UITextField *password;
 
@@ -23,10 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults setInteger:9001 forKey:@"HighScore"];
-//    [defaults synchronize];
-//    NSInteger theHighScore = [defaults integerForKey:@"HighScore"];
+
     UIScreen *screen = [UIScreen mainScreen];
     UIImage *img = [UIImage imageNamed:@"cover.png"];
     UIImageView *bgimg = [[UIImageView alloc]initWithFrame:CGRectMake(-200,0,screen.bounds.size.height*img.size.width/img.size.height, screen.bounds.size.height)];
@@ -42,7 +36,7 @@
     mask.backgroundColor = [UIColor whiteColor];
     mask.alpha = 0.7;
     
-    self.self.username = [[UITextField alloc]initWithFrame:CGRectMake(mask.frame.origin.x +20, mask.frame.origin.y+40, mask.frame.size.width-40, 40)];
+    self.username = [[UITextField alloc]initWithFrame:CGRectMake(mask.frame.origin.x +20, mask.frame.origin.y+40, mask.frame.size.width-40, 40)];
     self.username.placeholder = @"Username";
     self.username.borderStyle = UITextBorderStyleRoundedRect;
     self.username.textColor = [UIColor whiteColor];
@@ -83,10 +77,8 @@
     
 }
 - (void)loginPressed{
-//    self.tab = [[myTabBarController alloc]init];
-//    self.list = [[ListView alloc]init];
     //create the request
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://52.88.93.103/authenticate"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:3000/authenticate"]];
     request.HTTPMethod=@"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -97,9 +89,6 @@
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:&error];
     [request setHTTPBody:postdata];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if(!conn){
-        NSLog(@"fail connection");
-    }
 }
 -(void)goSignUp{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -135,22 +124,23 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     // Append the new data to the instance variable you declared
     [responseData appendData:data];
-//    NSLog(@"%@",responseData);
     NSError *error = nil;
     NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-//    NSLog(@"%@",json);
-//    NSLog(@"%@",[[json objectForKey:@"type"] class]);
-//    NSString *flag = [json objectForKey:@"type"];
-//    flag = [flag stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-//    BOOL res = [flag isEqualToString:@"1"];
-//    NSLog(@"%@",res);
+    NSLog(@"%@",json);
+
    if([json objectForKey:@"type"] == @(YES)){
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UITabBarController *tabBar = [sb instantiateViewControllerWithIdentifier:@"tabBar"];
         [self presentViewController:tabBar animated:NO completion:nil];
     }
     else{
-        NSLog(@"error login");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Error!"
+                                                        message:@"Incorrect username or password!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
     }
 
 }
