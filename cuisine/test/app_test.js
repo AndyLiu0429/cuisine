@@ -68,7 +68,7 @@ describe('app', function() {
                 }
 
                 res.status.should.be.equal(200);
-                token = res.body.data.token;
+                token = res.body.token;
                 done();
             })
 

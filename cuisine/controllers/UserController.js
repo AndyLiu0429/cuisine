@@ -77,6 +77,7 @@ exports.createUser = function (req,res){
                 user1.save().then(function(user2){
                     res.json({
                         type:true,
+                        token:user1.token,
                         data:"Successfully create user!"
                     });
                 });
