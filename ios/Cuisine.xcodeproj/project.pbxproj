@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		082CCC0E1BBE442B00019D90 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082CCC0D1BBE442B00019D90 /* MapKit.framework */; };
 		08B2C8941BD8253F00055413 /* mapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B2C8931BD8253F00055413 /* mapViewController.m */; settings = {ASSET_TAGS = (); }; };
+		08B4AE661BDCB64000725B38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B4AE651BDCB64000725B38 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		08B4AE691BDCB65300725B38 /* signUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B4AE681BDCB65300725B38 /* signUp.m */; settings = {ASSET_TAGS = (); }; };
 		08C9921D1BC5B304005DC9A7 /* detailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C9921C1BC5B304005DC9A7 /* detailPage.m */; settings = {ASSET_TAGS = (); }; };
 		08C992231BC73308005DC9A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08C992221BC73308005DC9A7 /* UIKit.framework */; };
 		08D10A461BBC755100F6A8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D10A451BBC755100F6A8F3 /* main.m */; };
-		08D10A491BBC755100F6A8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D10A481BBC755100F6A8F3 /* AppDelegate.m */; };
 		08D10A4C1BBC755100F6A8F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D10A4B1BBC755100F6A8F3 /* ViewController.m */; };
 		08D10A4F1BBC755100F6A8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D10A4D1BBC755100F6A8F3 /* Main.storyboard */; };
 		08D10A511BBC755100F6A8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D10A501BBC755100F6A8F3 /* Assets.xcassets */; };
@@ -26,13 +27,15 @@
 		082CCC0D1BBE442B00019D90 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		08B2C8921BD8253F00055413 /* mapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapViewController.h; sourceTree = "<group>"; };
 		08B2C8931BD8253F00055413 /* mapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapViewController.m; sourceTree = "<group>"; };
+		08B4AE651BDCB64000725B38 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../../../.Trash/AppDelegate.m; sourceTree = "<group>"; };
+		08B4AE671BDCB65300725B38 /* signUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signUp.h; sourceTree = "<group>"; };
+		08B4AE681BDCB65300725B38 /* signUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = signUp.m; sourceTree = "<group>"; };
 		08C9921B1BC5B304005DC9A7 /* detailPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailPage.h; sourceTree = "<group>"; };
 		08C9921C1BC5B304005DC9A7 /* detailPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailPage.m; sourceTree = "<group>"; };
 		08C992221BC73308005DC9A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		08D10A411BBC755100F6A8F3 /* Cuisine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cuisine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D10A451BBC755100F6A8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08D10A471BBC755100F6A8F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		08D10A481BBC755100F6A8F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		08D10A4A1BBC755100F6A8F3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		08D10A4B1BBC755100F6A8F3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		08D10A4E1BBC755100F6A8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,7 +83,9 @@
 			isa = PBXGroup;
 			children = (
 				08D10A471BBC755100F6A8F3 /* AppDelegate.h */,
-				08D10A481BBC755100F6A8F3 /* AppDelegate.m */,
+				08B4AE651BDCB64000725B38 /* AppDelegate.m */,
+				08B4AE671BDCB65300725B38 /* signUp.h */,
+				08B4AE681BDCB65300725B38 /* signUp.m */,
 				08E52E141BD1A3E800EDBE1F /* loginPageViewController.h */,
 				08E52E151BD1A3FA00EDBE1F /* loginPageViewController.m */,
 				08C9921B1BC5B304005DC9A7 /* detailPage.h */,
@@ -184,10 +189,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				08D10A5D1BBC767900F6A8F3 /* ListView.m in Sources */,
+				08B4AE691BDCB65300725B38 /* signUp.m in Sources */,
 				08E52E161BD1A3FA00EDBE1F /* loginPageViewController.m in Sources */,
 				08D10A4C1BBC755100F6A8F3 /* ViewController.m in Sources */,
 				08B2C8941BD8253F00055413 /* mapViewController.m in Sources */,
-				08D10A491BBC755100F6A8F3 /* AppDelegate.m in Sources */,
+				08B4AE661BDCB64000725B38 /* AppDelegate.m in Sources */,
 				08D10A661BBC9D8300F6A8F3 /* ListCell.m in Sources */,
 				08D10A461BBC755100F6A8F3 /* main.m in Sources */,
 				08C9921D1BC5B304005DC9A7 /* detailPage.m in Sources */,

@@ -44,6 +44,63 @@
             </objects>
             <point key="canvasLocation" x="-4002" y="-79"/>
         </scene>
+        <!--Sign Up-->
+        <scene sceneID="S3o-te-wUN">
+            <objects>
+                <viewController storyboardIdentifier="signup" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y7G-rV-IBL" customClass="signUp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XwT-hW-2YM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wqv-IG-O46"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fAO-Rn-APh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Web-dY-pjr">
+                                <rect key="frame" x="189" y="79" width="222" height="40"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="AHo-e6-Tlj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdU-Hx-rtc">
+                                <rect key="frame" x="275" y="257" width="50" height="30"/>
+                                <animations/>
+                                <state key="normal" title="SignUp"/>
+                                <connections>
+                                    <action selector="signUpPressed:" destination="y7G-rV-IBL" eventType="touchUpInside" id="xmB-5b-8HI"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Trl-8l-XxM">
+                                <rect key="frame" x="189" y="151" width="222" height="40"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Moc-Cv-Du7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Trl-8l-XxM" firstAttribute="centerX" secondItem="fAO-Rn-APh" secondAttribute="centerX" id="4so-xL-Bsx"/>
+                            <constraint firstItem="rdU-Hx-rtc" firstAttribute="centerX" secondItem="fAO-Rn-APh" secondAttribute="centerX" id="Sfh-uO-au3"/>
+                            <constraint firstItem="Web-dY-pjr" firstAttribute="centerX" secondItem="fAO-Rn-APh" secondAttribute="centerX" id="nCR-qC-1qP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="password" destination="Trl-8l-XxM" id="PBL-gG-55M"/>
+                        <outlet property="signupbtn" destination="rdU-Hx-rtc" id="hEy-2V-QYt"/>
+                        <outlet property="username" destination="Web-dY-pjr" id="qHf-vh-esN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2SS-xc-9gH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4002" y="614"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="BoQ-gy-v4O">
             <objects>

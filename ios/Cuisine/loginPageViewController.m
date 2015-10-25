@@ -9,6 +9,7 @@
 #import "loginPageViewController.h"
 #import "myTabBarController.h"
 #import "ListView.h"
+#import "signUp.h"
 @interface loginPageViewController ()
 @property(strong,atomic)myTabBarController *tab;
 @property(strong,atomic)ListView *list;
@@ -61,16 +62,24 @@
     [[login layer]setBorderColor:[UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1.0].CGColor];
 //    login.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor colorWithRed:151 green:151 blue:151 alpha:1]);
     [login setTitle:@"Login" forState:UIControlStateNormal];
-    [[login titleLabel]setFont:[UIFont fontWithName:@"Chalkduster" size:26.0]];
+    [login.titleLabel setFont:[UIFont fontWithName:@"Chalkduster" size:26.0]];
     [login setTitleColor:[UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1.0] forState:UIControlStateNormal];
 //    login.backgroundColor = [UIColor greenColor];
     [login addTarget:self action:@selector(loginPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *signup = [[UIButton alloc]initWithFrame:CGRectMake(login.frame.origin.x+20,login.frame.origin.y+60,250,20)];
+    [signup setTitle:@"Don't have an account?Sign up here!" forState:UIControlStateNormal];
+    [signup.titleLabel setFont:[UIFont systemFontOfSize:14.0]];
+    [signup setTitleColor: [UIColor colorWithRed:151.0/255 green:151.0/255 blue:151.0/255 alpha:1] forState:UIControlStateNormal];
+    
+    [signup addTarget:self action:@selector(goSignUp) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bgimg];
     [self.view addSubview:mask];
     [self.view addSubview:self.username];
     [self.view addSubview:self.password];
     [self.view addSubview:login];
     [self.view addSubview:title];
+    [self.view addSubview:signup];
     
 }
 - (void)loginPressed{
@@ -88,6 +97,14 @@
     NSData *postdata = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:&error];
     [request setHTTPBody:postdata];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if(!conn){
+        NSLog(@"fail connection");
+    }
+}
+-(void)goSignUp{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    signUp *signuppage = [sb instantiateViewControllerWithIdentifier:@"signup"];
+    [self presentViewController:signuppage animated:NO completion:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
