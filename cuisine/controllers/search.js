@@ -57,8 +57,8 @@ var yummly = require('yummly');
 
 
 exports.search_food_fuzzy = function(req, res) {
-    var term = req.body.term;
-
+    var term = req.query.term;
+    console.log(term);
     if (term === "") {
         res.send(403);
     }
@@ -72,9 +72,9 @@ exports.search_food_fuzzy = function(req, res) {
             if (error) {
                 console.error(error);
             } else if (response === 200) {
-                var res = json['matches'];
+                var res1 = json['matches'];
 
-                async.map(res,function(e, callback) {
+                async.map(res1,function(e, callback) {
 
                         var now = {
                             'name' : e.recipeName,
