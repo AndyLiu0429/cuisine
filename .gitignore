@@ -1,3 +1,4 @@
 /cuisine/node_modules/*
 /cuisine/.idea/*
 /.idea/*
+/cuisine/config.js
