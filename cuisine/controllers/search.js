@@ -59,50 +59,49 @@ var yummly = require('yummly');
 exports.search_food_fuzzy = function(req, res) {
     var term = req.query.term;
     console.log(term);
-    if (term === "") {
+    if (!term) {
         res.send(403);
     }
+    else {
+        yummly.search({
+                credentials: credentials,
+                query: {
+                    q: term
+                }
+            }, function (error, response, json) {
+                if (error) {
+                    console.error(error);
+                } else if (response === 200) {
+                    var res1 = json['matches'];
 
-    yummly.search({
-            credentials: credentials,
-            query: {
-                q: term
+                    async.map(res1, function (e, callback) {
+
+                            var now = {
+                                'name': e.recipeName,
+                                'image_url': e.smallImageUrls[0]
+                            };
+
+                            yelp.search({term: e.recipeName, limit: "1", location: "Manhattan"}, function (err, data) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+
+                                    now['restaurant_name'] = data.businesses[0].name;
+                                    now['desc'] = data.businesses[0].snippet_text;
+                                    now['category'] = mergeTitle(data.businesses[0].categories);
+
+                                }
+                                callback(null, now);
+                            });
+                        }, function (err, results) {
+                            res.json({"result": results});
+                        }
+                    );
+
+                }
             }
-        }, function (error, response, json) {
-            if (error) {
-                console.error(error);
-            } else if (response === 200) {
-                var res1 = json['matches'];
-
-                async.map(res1,function(e, callback) {
-
-                        var now = {
-                            'name' : e.recipeName,
-                            'image_url' : e.smallImageUrls[0]
-                        };
-
-                        yelp.search({term: e.recipeName, limit: "1", location: "Manhattan"}, function (err, data) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-
-                                now['restaurant_name'] = data.businesses[0].name;
-                                now['desc'] = data.businesses[0].snippet_text;
-                                now['category'] = mergeTitle(data.businesses[0].categories);
-
-                            }
-                            callback(null, now);
-                        });
-                    },function(err, results){
-                        res.json({"result" : results});
-                    }
-                );
-
-            }
-        }
-
-    );
-
+        );
+    }
 
 
 };
