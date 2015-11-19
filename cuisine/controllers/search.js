@@ -77,7 +77,7 @@ exports.search_food_fuzzy = function(req, res, next) {
 
                             var now = {
                                 'name': e.recipeName,
-                                'image_url': e.smallImageUrls[0]
+                                'image_url': e['imageUrlsBySize']['90']
                             };
 
                             yelp.search({term: e.recipeName, limit: "1", location: "Manhattan"}, function (err, data) {
@@ -132,6 +132,3 @@ exports.redis_search = function(req,res,next){
     });
 };
 
-//exports.redis_store = function(req, res){
-//
-//};
