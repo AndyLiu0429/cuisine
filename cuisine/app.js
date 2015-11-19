@@ -13,12 +13,13 @@ app.use(function(req, res, next) {
 });
 
 var user = require('./controllers/UserController');
+//app.get('/test',function(req,res){res.send("test");});
 app.post('/user/',user.createUser);
 app.post('/authenticate',user.authenticate);
 app.get('/home', user.ensureAuthorized, user.findUserByToken);
 
 var search = require('./controllers/search');
-app.get('/search', search.search_food_fuzzy);
+app.get('/search', search.redis_search , search.search_food_fuzzy);
 
 
 // catch 404 and forward to error handler
@@ -54,3 +55,4 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
