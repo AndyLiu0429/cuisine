@@ -23,6 +23,8 @@
 		3023091D1BDD6E9A0045CB98 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 302309161BDD6E9A0045CB98 /* AppDelegate.m */; };
 		3023091E1BDD6E9A0045CB98 /* ListCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 302309181BDD6E9A0045CB98 /* ListCellTableViewCell.m */; };
 		3023091F1BDD6E9A0045CB98 /* myTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3023091A1BDD6E9A0045CB98 /* myTabBarController.m */; };
+		302309241BDD8BB90045CB98 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302309221BDD8BB90045CB98 /* Fabric.framework */; };
+		302309251BDD8BB90045CB98 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302309231BDD8BB90045CB98 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		302309181BDD6E9A0045CB98 /* ListCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCellTableViewCell.m; sourceTree = "<group>"; };
 		302309191BDD6E9A0045CB98 /* myTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTabBarController.h; sourceTree = "<group>"; };
 		3023091A1BDD6E9A0045CB98 /* myTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTabBarController.m; sourceTree = "<group>"; };
+		302309221BDD8BB90045CB98 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		302309231BDD8BB90045CB98 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 			files = (
 				08C992231BC73308005DC9A7 /* UIKit.framework in Frameworks */,
 				082CCC0E1BBE442B00019D90 /* MapKit.framework in Frameworks */,
+				302309251BDD8BB90045CB98 /* Crashlytics.framework in Frameworks */,
+				302309241BDD8BB90045CB98 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +78,8 @@
 		08D10A381BBC755100F6A8F3 = {
 			isa = PBXGroup;
 			children = (
+				302309221BDD8BB90045CB98 /* Fabric.framework */,
+				302309231BDD8BB90045CB98 /* Crashlytics.framework */,
 				08D10A431BBC755100F6A8F3 /* Cuisine */,
 				08D10A421BBC755100F6A8F3 /* Products */,
 			);
@@ -137,6 +145,7 @@
 				08D10A3D1BBC755100F6A8F3 /* Sources */,
 				08D10A3E1BBC755100F6A8F3 /* Frameworks */,
 				08D10A3F1BBC755100F6A8F3 /* Resources */,
+				302309211BDD8B520045CB98 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -158,7 +167,7 @@
 				TargetAttributes = {
 					08D10A401BBC755100F6A8F3 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 5754Z4QKXM;
+						DevelopmentTeam = 5Z6GKGTGLK;
 					};
 				};
 			};
@@ -192,6 +201,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		302309211BDD8B520045CB98 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run b82b2107d241cf0fd9a1b0473494a0cef8ebdc95 a2356bc45a775ea611ba9517096930cf4ccb843e6e1d329921f558ce6411cfd9";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		08D10A3D1BBC755100F6A8F3 /* Sources */ = {
@@ -320,9 +346,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Cuisine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cs-2408.Cuisine";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cs5356.Cuisine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -334,9 +364,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Cuisine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cs-2408.Cuisine";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cs5356.Cuisine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

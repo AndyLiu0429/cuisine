@@ -12,9 +12,8 @@ var yelp = require("yelp").createClient({
 });
 
 exports.search_food = function(req, res) {
-    var term = req.body.term;
-
-    if (term === "") {
+    var term = req.query.term;
+    if (!term) {
         res.send(403);
     }
 
@@ -56,7 +55,7 @@ var credentials = {
 var yummly = require('yummly');
 
 
-exports.search_food_fuzzy = function(req, res) {
+exports.search_food_fuzzy = function(req, res, next) {
     var term = req.query.term;
     console.log(term);
     if (!term) {
@@ -94,7 +93,10 @@ exports.search_food_fuzzy = function(req, res) {
                                 callback(null, now);
                             });
                         }, function (err, results) {
-                            res.json({"result": results});
+                            var ret = {"result": results};
+                            client.set(term,JSON.stringify(ret));
+                            res.setHeader('Content-Type','application/json');
+                            res.json(ret);
                         }
                     );
 
@@ -102,15 +104,31 @@ exports.search_food_fuzzy = function(req, res) {
             }
         );
     }
-
-
 };
 
-//yummly.search({
-//    credentials: credentials,
-//    query :{
-//        q: "beef"
-//    }
-//}, function(err, res, json) {
-//    console.log(json['matches'][0]);
-//});
+var redis = require('redis');
+var client = redis.createClient(); //creates a new client
+client.on('connect', function() {
+    console.log('Redis Connected');
+});
+
+exports.redis_search = function(req,res,next){
+    var key = req.query.term;
+    //client.set(key,"mark");
+    console.log(key);
+    client.get(key,function(err,reply) {
+        //console.log(reply);
+        if(err){
+            console.log(err);
+        }else{
+            if(reply){
+                console.log(reply);
+                res.setHeader('Content-Type','application/json');
+                res.send(reply);
+            }else{
+                next();
+            }
+        }
+    });
+};
+
