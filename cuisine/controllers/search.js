@@ -29,11 +29,11 @@ exports.search_food = function(req, res) {
                 'image_url' : data.businesses[i].image_url,
                 'restaurant_name' : data.businesses[i].name,
                 'desc' : data.businesses[i].snippet_text,
-                'category': mergeTitle(data.businesses[i].categories)
+                'category': mergeTitle(data.businesses[i].categories),
+                'rating': data.businesses[i].rating
             };
             res.push(now);
         }
-
 
     });
 
