@@ -98,6 +98,7 @@ exports.search_food_fuzzy = function(req, res, next) {
                         }, function (err, results) {
                             var ret = {"result": results};
                             client.set(term,JSON.stringify(ret));
+
                             res.setHeader('Content-Type','application/json');
                             res.json(ret);
                         }

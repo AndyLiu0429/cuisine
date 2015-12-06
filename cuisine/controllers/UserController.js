@@ -94,26 +94,3 @@ exports.createUser = function (req,res){
 };
 
 
-//exports.deleteUser = function (req,res){
-//    User.destroy({
-//        where:{
-//            id : req.params.id
-//        }
-//    }).then(function(){
-//        res.send("User deleted");
-//    });
-//};
-
-
-//exports.updateUserEmail = function (req,res){
-//    User.update(
-//    {
-//        email:req.body.email
-//    },
-//    {
-//        where:{id:req.params.id}
-//    }
-//    ).then(function(){
-//      res.send("User updated");
-//    });
-//};
