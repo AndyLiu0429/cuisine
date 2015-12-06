@@ -1,7 +1,14 @@
 var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var morgan = require('morgan');
+
 var app = express();
+// create a write stream (in append mode)
+var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
+
+app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
