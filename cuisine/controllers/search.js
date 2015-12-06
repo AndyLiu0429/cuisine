@@ -40,6 +40,7 @@ exports.search_food = function(req, res) {
 };
 
 var mergeTitle = function(titles) {
+    if (!titles) return "";
     var res = titles.map(function(data) {
         return data[0];
     });
@@ -84,12 +85,14 @@ exports.search_food_fuzzy = function(req, res, next) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-
-                                    now['restaurant_name'] = data.businesses[0].name;
-                                    now['desc'] = data.businesses[0].snippet_text;
-                                    now['category'] = mergeTitle(data.businesses[0].categories);
+                                        console.log(data);
+                                        now['restaurant_name'] = data.businesses[0] ? data.businesses[0].name : "";
+                                        now['desc'] = data.businesses[0] ? data.businesses[0].snippet_text : "";
+                                        now['category'] = data.businesses[0] ? mergeTitle(data.businesses[0].categories) :
+                                        "";
 
                                 }
+
                                 callback(null, now);
                             });
                         }, function (err, results) {
