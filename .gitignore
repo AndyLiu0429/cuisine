@@ -1,6 +1,5 @@
 /cuisine/node_modules/*
 /cuisine/.idea/*
 /.idea/*
-/cuisine/config.js
 /cuisine/access.log
 /cuisine/tasks/.idea

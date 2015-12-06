@@ -1,7 +1,7 @@
 /**
  * Created by liutianyuan on 10/25/15.
  */
-
+var dish = require('DishController');
 var yelp_config = require("../config").yelp;
 var async = require("async");
 var yelp = require("yelp").createClient({
@@ -20,7 +20,7 @@ exports.search_food = function(req, res) {
     var result = [];
     yelp.search({term: term, limit: "10", location: "Manhattan"}, function(error, data) {
         if (error) {
-
+            console.log(error);
         }
 
         for (var i = 0; i < data.businesses.length; i++) {
@@ -85,12 +85,12 @@ exports.search_food_fuzzy = function(req, res, next) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                        console.log(data);
+                                        //console.log(data);
                                         now['restaurant_name'] = data.businesses[0] ? data.businesses[0].name : "";
                                         now['desc'] = data.businesses[0] ? data.businesses[0].snippet_text : "";
                                         now['category'] = data.businesses[0] ? mergeTitle(data.businesses[0].categories) :
                                         "";
-
+                                        dish.saveDish(now['name'], now);
                                 }
 
                                 callback(null, now);
