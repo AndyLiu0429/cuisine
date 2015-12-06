@@ -43,7 +43,7 @@ exports.authenticate = function(req,res){
 		if (user) {
 			res.json({
 				type: true,
-				token: user.token
+                user_data: user
 			});
 		} else {
 			res.status(401).json({
@@ -72,13 +72,13 @@ exports.createUser = function (req,res){
             } else {
                 User.create({
                     user_name: uname,
-                    password: pswd,
+                    password: pswd
                 }).then(function (user1) {
                     user1.token = jwt.sign(user1, secret_key);
                     user1.save().then(function () {
                         res.json({
                             type: true,
-                            token: user1.token,
+                            user_data: user1,
                             data: "Successfully create user!"
                         });
                     });
