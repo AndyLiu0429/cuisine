@@ -6,7 +6,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Dish = sequelize.define('Dish', {
         dish_name: {type:DataTypes.STRING,allowNull:false},
-        json_str: {type:DataTypes.STRING,allowNull:false}
+        json_str: {type:DataTypes.STRING(2000),allowNull:false}
     }, {
         classMethods: {
             associate: function (models) {
