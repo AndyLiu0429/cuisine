@@ -41,15 +41,6 @@ exports.search_food = function(req, res) {
     res.json({"result" : result});
 };
 
-var mergeTitle = function(titles) {
-    if (!titles) return "";
-    var res = titles.map(function(data) {
-        return data[0];
-    });
-    return res.join(" ");
-};
-
-
 var credentials = {
     id: 'd5879cdd',
     key: '195d2edf037e06887f2a7bef5afa8dec'
@@ -92,7 +83,7 @@ exports.search_food_fuzzy = function(req, res, next) {
                                         console.log(data.businesses[0]);
                                         now['restaurant_name'] = data.businesses[0] ? data.businesses[0].name : "";
                                         now['desc'] = data.businesses[0] ? data.businesses[0].snippet_text : "";
-                                        now['category'] = data.businesses[0] ? mergeTitle(data.businesses[0].categories) :
+                                        now['category'] = data.businesses[0] ? util.mergeTitle(data.businesses[0].categories) :
                                         "";
                                         now['location'] = data.businesses[0] ? data.businesses[0].location : "";
                                         //console.log(now['location']);

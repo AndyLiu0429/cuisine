@@ -2,6 +2,11 @@
  * Created by liutianyuan on 11/29/15.
  * all the nlp helper functions go here.
  */
+var redis = require('redis');
+var client = redis.createClient(); //creates a new client
+client.on('connect', function() {
+    //console.log('Redis Connected');
+});
 
 var pos = require('pos');
 var tagger = new pos.Tagger();
@@ -58,6 +63,24 @@ var getNouns = function(words) {
     }
 
     return res;
+};
+
+var recommendHard = function() {
+
+};
+
+exports.mergeTitle = function(titles) {
+    if (!titles) return "";
+    var res = titles.map(function(data) {
+        return data[0];
+    });
+    return res.join(" ");
+};
+
+exports.counterStr = function(str) {
+    if (!str) return "::0";
+
+    return str + "::counter";
 };
 
 
