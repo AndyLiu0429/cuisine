@@ -8,7 +8,7 @@ var path      = require("path");
 var config = require('../config').db_test;
 var sequelize = new Sequelize(config.database,config.username,config.password,config);
 var db        = {};
-//console.log(config.db_addr);
+
 fs
     .readdirSync(__dirname)
     .filter(function(file) {
