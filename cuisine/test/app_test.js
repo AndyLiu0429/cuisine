@@ -4,7 +4,7 @@
 /**
  * Created by wangbochen on 9/23/15.
  */
-//models = require('../models');
+models = require('../models');
 //models.User.create({
 //    user_name:"wangbochen",
 //    password:"123456",
@@ -40,6 +40,8 @@ describe('app', function() {
     var server;
 
     before(function(done) {
+        models.sequelize.sync({force: true});
+
         server = app.listen(port, function(err, result) {
             if (err) {
                 done(err);

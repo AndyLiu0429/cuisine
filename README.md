@@ -1,6 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/AndyLiu0429/cuisine.png?label=ready&title=Ready)](https://waffle.io/AndyLiu0429/cuisine)
-[![Build Status](https://travis-ci.org/simkimsia/UtilityBehaviors.png)](https://travis-ci.org/simkimsia/UtilityBehaviors)
-[![Coverage Status](https://coveralls.io/repos/simkimsia/UtilityBehaviors/badge.png?branch=master)](https://coveralls.io/r/simkimsia/UtilityBehaviors?branch=master)
+[![Build Status](https://travis-ci.org/AndyLiu0429/cuisine.svg?branch=master)](https://travis-ci.org/AndyLiu0429/cuisine)
 
 # cuisine
 Cuisine provides api for recommend menu based on your dietary habits, past eating history and your flavor choice.
