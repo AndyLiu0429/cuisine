@@ -71,4 +71,4 @@ exports.cleanWords = function(sentences) {
     return removeStopWords(nouns).join(' ');
 };
 
-console.log(cleanWords("I hate beef!"));
+//console.log(cleanWords("I hate beef!"));
