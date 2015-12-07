@@ -15,6 +15,8 @@ var assert = require("assert");
 var request = require('supertest');
 var should = require('should');
 
+
+var dishcontroll = require('../controllers/DishController');
 var app = require('../app');
 var models  = require('../models');
 models.sequelize.sync({force: false});
@@ -26,6 +28,8 @@ var port = 3333;
 describe('app', function() {
     var url = 'http://localhost:'  + port;
     var token;
+    var user_id;
+
 
     var profile = {
         'user_name' : "Wahaha",
@@ -40,6 +44,11 @@ describe('app', function() {
             if (err) {
                 done(err);
             } else {
+
+                dishcontroll.saveDish('xiaohaha',  'dad12');
+                dishcontroll.saveDish('beef', 'dadadac');
+                dishcontroll.saveDish('pasta', 'haah');
+
                 done();
             }
         })
@@ -68,7 +77,11 @@ describe('app', function() {
                 }
 
                 res.status.should.be.equal(200);
-                token = res.body.token;
+                token = res.body.data.token;
+                user_id = res.body.data.id;
+                //console.log(user_id);
+
+                //console.log(token);
                 done();
             })
 
@@ -124,17 +137,65 @@ describe('app', function() {
     it ('should see my homepage if authenticated', function(done) {
         request(url)
             .get('/home')
+            .set('Accept', 'application/json')
+            .set('Authorization', token)
+            .end(function(err, res) {
+                if (err) {
+                    throw err;
+                }
+                //console.log(res);
+                res.status.should.be.equal(200);
+                done();
+            })
+
+    });
+
+    it ('should return some results if search something', function(done) {
+        request(url)
+            .get('/search?term=beef')
             .set('authorization', token)
             .end(function(err, res) {
                 if (err) {
                     throw err;
                 }
 
+                //console.log(res);
+                res.status.should.be.equal(200);
+                done();
+            })
+    });
+
+    it ('should create favorite dish lists with valid user id', function(done) {
+        request(url)
+            .post('/favorite')
+            .field('user_id', user_id)
+            .field('dish_name', 'xiaohaha')
+            .end(function(err, res) {
+                if (err) {
+                    throw err;
+                }
+
+                //console.log(res);
                 res.status.should.be.equal(200);
                 done();
             })
 
     });
+
+    //it ('should not return anything when query is invalid', function(done) {
+    //    request(url)
+    //        .post('/favorite')
+    //        .field('user_id', 1023)
+    //        .field('dish_name', 'da')
+    //        .end(function(err, res) {
+    //            if (err) {
+    //                throw err;
+    //            }
+    //
+    //            res.status.should.be.equal(401);
+    //            done();
+    //        })
+    //})
 
 
 });

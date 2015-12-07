@@ -1,7 +1,8 @@
-var dishcontroll = require('./../controllers/DishController');
+var dishcontroll = require('../controllers/DishController');
 var models  = require('../models/index');
 var User = models.User;
 var Dish = models.Dish;
+
 //dishcontroll.saveDish('roast beef','description');
 //dishcontroll.saveDish('fried beef','description');
 //dishcontroll.saveDish('zha beef','description');
