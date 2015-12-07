@@ -57,6 +57,7 @@ exports.authenticate = function(req,res){
 exports.createUser = function (req,res){
     var uname = req.body.user_name;
     var pswd = req.body.password;
+    var email = req.body.email;
     if(uname.length&&pswd.length) {
         User.findOne({
             where: {
@@ -72,7 +73,8 @@ exports.createUser = function (req,res){
             } else {
                 User.create({
                     user_name: uname,
-                    password: pswd
+                    password: pswd,
+                    email: email
                 }).then(function (user1) {
                     user1.token = jwt.sign(user1, secret_key);
                     user1.save().then(function () {
