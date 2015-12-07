@@ -3,4 +3,6 @@ before_script:
   - mysql -e 'create database if not exists test;'
 node_js:
   - "0.12"
+services:
+  - redis-server
 script: cd cuisine && npm install && npm test

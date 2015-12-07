@@ -4,7 +4,7 @@
 /**
  * Created by wangbochen on 9/23/15.
  */
-//models = require('../models');
+models = require('../models');
 //models.User.create({
 //    user_name:"wangbochen",
 //    password:"123456",
@@ -40,6 +40,8 @@ describe('app', function() {
     var server;
 
     before(function(done) {
+        models.sequelize.sync({force: true});
+
         server = app.listen(port, function(err, result) {
             if (err) {
                 done(err);
@@ -79,7 +81,7 @@ describe('app', function() {
                 res.status.should.be.equal(200);
                 token = res.body.data.token;
                 user_id = res.body.data.id;
-                //console.log(user_id);
+                console.log(user_id);
 
                 //console.log(token);
                 done();
@@ -153,7 +155,7 @@ describe('app', function() {
     it ('should return some results if search something', function(done) {
         request(url)
             .get('/search?term=beef')
-            .set('authorization', token)
+            .set('Authorization', token)
             .end(function(err, res) {
                 if (err) {
                     throw err;
@@ -168,8 +170,10 @@ describe('app', function() {
     it ('should create favorite dish lists with valid user id', function(done) {
         request(url)
             .post('/favorite')
-            .field('user_id', user_id)
-            .field('dish_name', 'xiaohaha')
+            .send({
+                user_id : user_id,
+                dish_name : 'xiaohaha'
+            })
             .end(function(err, res) {
                 if (err) {
                     throw err;
@@ -182,20 +186,50 @@ describe('app', function() {
 
     });
 
-    //it ('should not return anything when query is invalid', function(done) {
-    //    request(url)
-    //        .post('/favorite')
-    //        .field('user_id', 1023)
-    //        .field('dish_name', 'da')
-    //        .end(function(err, res) {
-    //            if (err) {
-    //                throw err;
-    //            }
-    //
-    //            res.status.should.be.equal(401);
-    //            done();
-    //        })
-    //})
 
+
+    it ('should not return anything when query is invalid', function(done) {
+        request(url)
+            .post('/favorite')
+            .send({
+                user_id : user_id,
+                dish_name : 'beefnogood'
+            })
+            .end(function(err, res) {
+                if (err) {
+                    throw err;
+                }
+
+                res.status.should.be.equal(401);
+                done();
+            })
+    })
+
+    it ('should return whole favorite dish lists when query with valid user id', function(done) {
+        request(url)
+            .get('/favorite?user_id=' + user_id)
+            .end(function(err, res) {
+                if (err) {
+                    throw err;
+                }
+                //console.log(res);
+                res.status.should.be.equal(200);
+                done();
+            })
+    });
+
+    it ('should return nothing if query with wrong user id', function(done) {
+        request(url)
+            .get('/favorite?user_id=42')
+            .end(function(err, res) {
+                if (err) {
+                    throw err;
+                }
+
+                res.status.should.be.equal(401);
+                done();
+            })
+
+    })
 
 });
