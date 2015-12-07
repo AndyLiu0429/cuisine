@@ -1,7 +1,7 @@
 /**
  * Created by liutianyuan on 10/25/15.
  */
-var dish = require('DishController');
+var dish = require('./DishController');
 var yelp_config = require("../config").yelp;
 var async = require("async");
 var yelp = require("yelp").createClient({

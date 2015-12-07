@@ -5,15 +5,7 @@
 
 module.exports = function(sequelize, DataTypes) {
     var FavoriteDish =  sequelize.define('FavoriteDish', {
-        user_id: {type:DataTypes.INTEGER},
-        dish_id: {type:DataTypes.INTEGER}
-    }, {
-        classMethods: {
-            associate: function (models) {
-                // associations can be defined here
-
-            }
-        }
+        status: DataTypes.STRING
     });
     return FavoriteDish;
 };

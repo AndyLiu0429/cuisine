@@ -28,6 +28,11 @@ app.get('/home', user.ensureAuthorized, user.findUserByToken);
 var search = require('./controllers/search');
 app.get('/search', search.redis_search , search.search_food_fuzzy);
 
+var dish = require('./controllers/DishController');
+app.post('/favorite',dish.createFavorite);
+//app.post('/favorite/delete',dish.deleteFavorite);
+app.get('/favorite',dish.getFavorite);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

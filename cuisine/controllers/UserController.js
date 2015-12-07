@@ -24,7 +24,7 @@ exports.findUserByToken = function (req,res){
       }
   }).then(function(user){
 	  if(user) {
-		  res.json({
+		  res.status(200).json({
 			  type: true,
 			  data: user
 		  });
@@ -41,9 +41,9 @@ exports.authenticate = function(req,res){
 		}
 	}).then(function(user) {
 		if (user) {
-			res.json({
+			res.status(200).json({
 				type: true,
-                user_data: user
+                data: user
 			});
 		} else {
 			res.status(401).json({
@@ -76,10 +76,9 @@ exports.createUser = function (req,res){
                 }).then(function (user1) {
                     user1.token = jwt.sign(user1, secret_key);
                     user1.save().then(function () {
-                        res.json({
+                        res.status(200).json({
                             type: true,
-                            user_data: user1,
-                            data: "Successfully create user!"
+                            data: user1
                         });
                     });
                 });

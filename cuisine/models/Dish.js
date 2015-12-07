@@ -10,12 +10,13 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function (models) {
-                // associations can be defined here
-                Dish.hasMany(models.FavoriteDish,{
-                    foreignKey: 'dish_id'
+                //associations can be defined here
+                Dish.belongsToMany(models.User,{
+                    through: 'FavoriteDishes'
                 });
             }
         }
-    });
+    }
+    );
     return Dish;
 };

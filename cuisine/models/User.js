@@ -10,14 +10,14 @@ module.exports = function(sequelize, DataTypes) {
         token:{type:DataTypes.STRING(500)}
     }, {
         classMethods: {
-            associate: function (models) {
-                // associations can be defined here
-                User.hasMany(models.FavoriteDish,{
-                    foreignKey: 'user_id'
+           associate: function (models) {
+                //associations can be defined here
+                User.belongsToMany(models.Dish,{
+                    through: 'FavoriteDishes'
                 });
             }
         }
-
-    });
+    }
+    );
     return User;
 };
