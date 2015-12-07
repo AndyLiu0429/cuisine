@@ -33,7 +33,7 @@ exports.findUserByToken = function (req,res){
 };
 
 exports.authenticate = function(req,res){
-
+    console.log(req.body);
 	User.findOne({
 		where: {
 			user_name: req.body.user_name,
