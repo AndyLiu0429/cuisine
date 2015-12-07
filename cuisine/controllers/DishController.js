@@ -26,3 +26,5 @@ exports.saveDish = function (dish_name,json_str){
         console.log("Empty dish name or description!");
     }
 };
+
+Dish.us

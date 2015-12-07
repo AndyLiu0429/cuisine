@@ -1,7 +1,9 @@
 /**
  * Created by liutianyuan on 10/25/15.
  */
-var dish = require('DishController');
+var util = require('./Utils');
+
+var dish = require('./DishController');
 var yelp_config = require("../config").yelp;
 var async = require("async");
 var yelp = require("yelp").createClient({
@@ -58,7 +60,9 @@ var yummly = require('yummly');
 
 exports.search_food_fuzzy = function(req, res, next) {
     var term = req.query.term;
-    console.log(term);
+    //console.log(term);
+    term = util.cleanWords(term);
+
     if (!term) {
         res.send(403);
     }
@@ -85,12 +89,14 @@ exports.search_food_fuzzy = function(req, res, next) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                        //console.log(data);
+                                        console.log(data.businesses[0]);
                                         now['restaurant_name'] = data.businesses[0] ? data.businesses[0].name : "";
                                         now['desc'] = data.businesses[0] ? data.businesses[0].snippet_text : "";
                                         now['category'] = data.businesses[0] ? mergeTitle(data.businesses[0].categories) :
                                         "";
-                                        dish.saveDish(now['name'], now);
+                                        now['location'] = data.businesses[0] ? data.businesses[0].location : "";
+                                        //console.log(now['location']);
+                                        dish.saveDish(now['name'], JSON.stringify(now));
                                 }
 
                                 callback(null, now);
@@ -119,14 +125,14 @@ client.on('connect', function() {
 exports.redis_search = function(req,res,next){
     var key = req.query.term;
     //client.set(key,"mark");
-    console.log(key);
+    //console.log(key);
     client.get(key,function(err,reply) {
         //console.log(reply);
         if(err){
             console.log(err);
         }else{
             if(reply){
-                console.log(reply);
+                //console.log(reply);
                 res.setHeader('Content-Type','application/json');
                 res.send(reply);
             }else{
