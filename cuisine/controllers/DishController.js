@@ -50,7 +50,7 @@ exports.createFavorite = function (req,res){
                 if(!dish) {
                     res.status(401).json({
                         type: false,
-                        data: "No existed UserID!"
+                        data: "No existed Dish name!"
                     });
                 }else{
                     user.addDish(dish);
