@@ -4,6 +4,13 @@
 var models  = require('../models');
 var Dish = models.Dish;
 var User = models.User;
+var util = require('./Utils');
+
+var redis = require('redis');
+var client = redis.createClient(); //creates a new client
+client.on('connect', function() {
+    //console.log('Redis Connected');
+});
 
 exports.saveDish = function (dish_name,json_str){
     if(dish_name.length&&json_str.length) {
@@ -31,6 +38,19 @@ exports.saveDish = function (dish_name,json_str){
 exports.createFavorite = function (req,res){
     var user_id = req.body.user_id;
     var dish_name = req.body.dish_name;
+
+    //console.log(req.body);
+    var dish_counter = util.counterStr(dish_name);
+    client.exists(dish_counter, function(err, rep) {
+
+        if (rep === 1) {
+            client.incr(dish_counter);
+            console.log('reach here ');
+        } else {
+            client.set(dish_counter, 1);
+        }
+    });
+
     User.findOne({
         where:{
             id:user_id
@@ -70,13 +90,14 @@ exports.getFavorite = function(req,res){
         where:{
             id:user_id
         }
-    }).then(function(user){
-        if(!user) {
+    }).then(function (user) {
+        if (!user) {
             res.status(401).json({
                 type: false,
-                data: "No existed UserID!"
+                data: "UserID not existed!"
             });
-        }else{
+
+        } else {
             user.getDishes().then(function(dishes){
                 if(!dishes){
                     res.status(401).json({

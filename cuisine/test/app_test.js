@@ -14,7 +14,13 @@ models = require('../models');
 var assert = require("assert");
 var request = require('supertest');
 var should = require('should');
+var redis = require('redis');
+var util = require('../controllers/Utils');
 
+var client = redis.createClient(); //creates a new client
+client.on('connect', function() {
+    //console.log('Redis Connected');
+});
 
 var dishcontroll = require('../controllers/DishController');
 var app = require('../app');
@@ -232,6 +238,19 @@ describe('app', function() {
                 done();
             })
 
-    })
+    });
+
+    it ('should set counter properly when get favorite dishes', function(done) {
+
+        client.get(util.counterStr('xiaohaha'), function(err, reply) {
+            if (err) {
+                throw err;
+            }
+
+            reply.should.be.equal('1');
+            done();
+        })
+
+    });
 
 });

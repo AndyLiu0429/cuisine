@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
            associate: function (models) {
                 //associations can be defined here
                 User.belongsToMany(models.Dish,{
-                    through: 'FavoriteDishes'
+                    through: 'FavoriteDishes',
+                    onDelete : 'cascade'
                 });
             }
         }
