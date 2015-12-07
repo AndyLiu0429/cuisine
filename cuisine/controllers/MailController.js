@@ -10,9 +10,9 @@ exports.sendEmail = function(req,res){
         }
     })));
     var mailOptions={
-        to : req.query.to,
-        subject : req.query.subject,
-        text : req.query.text
+        to : req.body.to,
+        subject : req.body.subject,
+        text : req.body.text
     };
     //console.log(mailOptions);
     transport.sendMail(mailOptions, function(error, response){

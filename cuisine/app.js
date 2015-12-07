@@ -34,7 +34,7 @@ app.post('/favorite',dish.createFavorite);
 app.get('/favorite',dish.getFavorite);
 
 var mail = require('./controllers/MailController');
-app.get('/mail',mail.sendEmail);
+app.post('/mail',mail.sendEmail);
 
 
 // catch 404 and forward to error handler
