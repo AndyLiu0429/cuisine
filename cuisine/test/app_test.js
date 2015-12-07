@@ -40,7 +40,7 @@ describe('app', function() {
     var server;
 
     before(function(done) {
-        models.sequelize.sync({force: true});
+        models.sequelize.sync({force: true}).then(function() {
 
         server = app.listen(port, function(err, result) {
             if (err) {
@@ -54,6 +54,8 @@ describe('app', function() {
                 done();
             }
         })
+            }
+        )
 
     });
 
@@ -81,7 +83,7 @@ describe('app', function() {
                 res.status.should.be.equal(200);
                 token = res.body.data.token;
                 user_id = res.body.data.id;
-                console.log(user_id);
+                //console.log(user_id);
 
                 //console.log(token);
                 done();
