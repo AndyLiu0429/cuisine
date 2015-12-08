@@ -12,9 +12,9 @@ def prettify(dishes):
 
 def makePost(user_email, dishes):
 	params = {
-	'subject' : "Today's favorite dishes!",
-	'to':user_email,
-	'text': prettify(dishes)
+	    'subject' : "Today's favorite dishes!",
+	    'to':user_email,
+	    'text': prettify(dishes)
 	}
 	response = requests.post(url_join(BASE_URL, 'mail'), 
 		data = params)
