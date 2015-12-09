@@ -21,20 +21,36 @@
     var galleryCtrl = function ($scope, $window, $timeout, $interval, $filter, sessionStorage) {
         // Pagincation: resultsOnPage: 1 (default), 5,10, 15 or 20 results per page
         $scope.pages = 1;
-        $scope.resultsOnPage = 1;
+        $scope.resultsOnPage = 10;
         $scope.setResultsOnPage = function (value) {
-            $scope.resultsOnPage = (value > 0) ? value : 1;
+            $scope.resultsOnPage = (value > 0) ? value : 10;
             $scope.pages = Math.round($scope.imagesOrig.length / $scope.resultsOnPage);
             $scope.pagesArr = _range(1, $scope.pages);
-            $scope.searchImage = "";
+            $scope.filterImage = "";
             $scope.setPage(1);
         };
         $scope.openModal = false;
         $scope.imagesSlideshow = [];
+        $scope.searchImage = '';
+        
+        $scope.callRest = function (term) {
+
+                var d = $q.defer();
+                $http.get('http://10.128.4.98:3000/search?term=' + term, {headers: {'Content-type': 'application/json'}})
+                    .success(function (data) {
+
+                        d.resolve(data['result']);
+                    })
+                    .error(function (error) {
+                        d.reject(error);
+                    });
+                return d.promise;
+
+        };
 
         $scope.setPage = function (value) {
             $scope.page = value;
-            $scope.searchImage = "";
+            $scope.filterImage = "";
             $scope.updateElementsRange();
             $scope.clearSlideShow();
         };
@@ -74,14 +90,14 @@
 
         $scope.isImageRemoved = function (image) {
             var removedImages = sessionStorage.get("removedImages") || [];
-            return !(removedImages.indexOf(image.url) == -1);
+            return !(removedImages.indexOf(image.image_url) == -1);
         };
 
         $scope.removeImage = function (image) {
-            if ($window.confirm("Are you sure to delete image " + image.title + "?")) {
+            if ($window.confirm("Are you sure to delete image " + image.name + "?")) {
                 var removedImages = sessionStorage.get("removedImages") || [];
-                if (removedImages.indexOf(image.url) == -1) {
-                    removedImages.push(image.url);
+                if (removedImages.indexOf(image.image_url) == -1) {
+                    removedImages.push(image.image_url);
                 }
                 sessionStorage.set("removedImages", removedImages);
             }
@@ -95,7 +111,7 @@
             var startIndex = 0;
 
             for (var i = 0; i < $scope.filteredImages.length; i++) {
-                if (!$scope.isImageRemoved(image.url) && $scope.filteredImages[i].url == image.url) {
+                if (!$scope.isImageRemoved(image.image_url) && $scope.filteredImages[i].image_url == image.image_url) {
                     startIndex = i;
                 }
             }
@@ -113,7 +129,7 @@
                     if (j > $scope.filteredImages.length) {
                         j = 0;
                     }
-                    if (!$scope.isImageRemoved($scope.filteredImages[j].url)) {
+                    if (!$scope.isImageRemoved($scope.filteredImages[j].image_url)) {
                         $scope.imageSlideshow = $scope.filteredImages[j];
                     }
                     j++;
@@ -144,11 +160,21 @@
                 galleryService.init(config);
 
                 galleryService.getData(config.dataSource).then(function (data) {
+
                     scope.imagesOrig = angular.copy(data);
                     scope.images = data;
                     scope.pages = Math.ceil(scope.imagesOrig.length / scope.resultsOnPage);
                     scope.pagesArr = _range(1, scope.pages);
                     scope.slideshow = parseInt(config.dataSlideshow);
+                });
+            },
+
+            onKeyDown: function(scope, element, attrs) {
+                element.bind("keydown keypress", function (event) {
+                    scope.$apply(function (){
+                        scope.$eval(attrs.ngEnter);
+                    });
+                    event.preventDefault();
                 });
             },
             controller: galleryCtrl,
@@ -196,6 +222,7 @@
             var d = $q.defer();
             $http.get(url, {headers: {'Content-type': 'application/json'}})
                 .success(function (data) {
+
                     d.resolve(data);
                 })
                 .error(function (error) {

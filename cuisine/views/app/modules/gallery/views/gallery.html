@@ -9,25 +9,25 @@
                             class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 
                     <h4 ng-if="slideshow">
-                        <strong class="modal-title" ng-bind="image.title"></strong> /
-                        <span class="date" ng-bind="imageSlideshow.date | parseDateStrFilter | date: 'MM/dd/yyyy - hh:mm'"></span>
+                        <strong class="modal-title" ng-bind="image.name"></strong>
+                        <!--<span class="date" ng-bind="imageSlideshow.desc"></span>-->
                     </h4>
 
                     <h4 ng-if="!slideshow">
-                        <strong class="modal-title" ng-bind="image.title"></strong> /
-                        <span class="date" ng-bind="image.date | parseDateStrFilter | date: 'MM/dd/yyyy - hh:mm'"></span>
+                        <strong class="modal-title" ng-bind="image.name"></strong>
+                        <span class="date" ng-bind="image.desc"></span>
                     </h4>
                 </div>
                 <div class="modal-body">
                     <!-- Slideshow -->
                     <div ng-if="slideshow">
-                        <img gallery-image fade-in class="animate-show" ng-src="{{ imageSlideshow.url }}" alt="">
+                        <img gallery-image fade-in class="animate-show" ng-src="{{ imageSlideshow.image_url }}" alt="">
                     </div>
 
                     <!-- No Slideshow -->
                     <div ng-if="!slideshow">
-                        <img gallery-image ng-src="{{ image.url }}" alt="">
-                        <p class="date" ng-bind="image.date | parseDateStrFilter | date: 'MM/dd/yyyy - hh:mm'"></p>
+                        <img gallery-image ng-src="{{ image.image_url }}" alt="" >
+                        <p class="date" ng-bind="image.desc"></p>
                     </div>
                 </div>
             </div>
@@ -37,32 +37,38 @@
     <!-- Header -->
     <div class="row page-header">
         <div class="col-lg-8">
-            <h1>Gallery</h1>
+            <h1>Cuisine</h1>
         </div>
+        <!--<div class="col-lg-3">-->
+            <!--<label>-->
+                <!--Search:-->
+                <!--<input onkeydown="callRest()" ng-model="searchImage" type="text">-->
+            <!--</label>-->
+        <!--</div>-->
         <div class="col-lg-3">
             <label>
                 Search:
-                <input ng-model="searchImage" type="text">
+                <input ng-model="filterImage" type="text">
             </label>
         </div>
     </div>
 
     <!-- Images -->
     <div class="row">
-        <div ng-repeat="image in filteredImages = (images | filter:searchImage | orderBy:orderBy) track by $index"
+        <div ng-repeat="image in filteredImages = (images | filter:filterImage | orderBy:orderBy) track by $index"
              ng-if="isAllowToShowImage($index, image);"
              class="col-lg-3 col-md-4 col-xs-6 thumb"
         >
             <span class="thumbnail">
                 <a class="image-wrapper" ng-click="openImage(image)">
-                    <img gallery-image ng-src="{{ image.url }}" class="img-responsive" title="{{image.title}}"
-                         alt="{{image.title}}">
+                    <img gallery-image ng-src="{{ image.image_url }}" class="img-responsive" title="{{image.name}}"
+                         alt="{{image.name}}" width="300%" height="300%">
                 </a>
-                <p class="title" ng-click="openImage(image)" ng-bind="image.title" title="{{image.title}}"></p>
-                <p class="date" ng-bind="image.date | parseDateStrFilter | date: 'MM/dd/yyyy - hh:mm'"></p>
-                <button class="btn btn-sm btn-danger" ng-click="removeImage(image)">
-                    <span class="glyphicon glyphicon-remove" title="Remove"> <strong>Remove</strong></span>
-                </button>
+                <p class="title" ng-click="openImage(image)" ng-bind="image.name" title="{{image.name}}"></p>
+                <p class="date" ng-bind="image.desc"></p>
+                <!--<button class="btn btn-sm btn-danger" ng-click="removeImage(image)">-->
+                    <!--<span class="glyphicon glyphicon-remove" title="Remove"> <strong>Remove</strong></span>-->
+                <!--</button>-->
             </span>
         </div>
     </div>
@@ -87,8 +93,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li ng-class="{ 'active': orderBy === 'title' }"><a ng-click="orderBy='title';">Title</a></li>
-                        <li ng-class="{ 'active': orderBy === 'date' }"><a ng-click="orderBy='date';">Date</a></li>
+                        <li ng-class="{ 'active': orderBy === 'name' }"><a ng-click="orderBy='name';">Name</a></li>
                     </ul>
                 </div>
             </div>
@@ -101,7 +106,7 @@
                             aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" ng-init="resultsVarients = [1,5,10,15,20]">
+                    <ul class="dropdown-menu" ng-init="resultsVarients = [10,15,20]">
                         <li ng-repeat="resultsCount in resultsVarients track by $index"
                             ng-class="{ 'active': resultsOnPage === resultsCount }">
                             <a ng-click="setResultsOnPage(resultsCount)">

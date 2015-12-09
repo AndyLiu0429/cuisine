@@ -75,12 +75,13 @@ exports.search_food_fuzzy = function(req, res, next) {
                                 'name': e.recipeName,
                                 'image_url': e['imageUrlsBySize']['90']
                             };
+                            //console.log(e);
 
                             yelp.search({term: e.recipeName, limit: "1", location: "Manhattan"}, function (err, data) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                        console.log(data.businesses[0]);
+                                        //console.log(data.businesses[0]);
                                         now['restaurant_name'] = data.businesses[0] ? data.businesses[0].name : "";
                                         now['desc'] = data.businesses[0] ? data.businesses[0].snippet_text : "";
                                         now['category'] = data.businesses[0] ? util.mergeTitle(data.businesses[0].categories) :
