@@ -65,10 +65,6 @@ var getNouns = function(words) {
     return res;
 };
 
-var recommendHard = function() {
-
-};
-
 exports.mergeTitle = function(titles) {
     if (!titles) return "";
     var res = titles.map(function(data) {
