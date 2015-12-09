@@ -19,6 +19,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/',function(req,res){
+   res.send('Welcome to cuisine!');
+});
+
 var user = require('./controllers/UserController');
 //app.get('/test',function(req,res){res.send("test");});
 app.post('/user/',user.createUser);
